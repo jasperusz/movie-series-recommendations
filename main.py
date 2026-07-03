@@ -27,4 +27,10 @@ def search_movie(search_name):
 search_name = input("Enter a movie or series name to search: ")
 
 if __name__ == "__main__":
-    search_movie(search_name)
+    while True:
+        search_movie(search_name)
+        print("Do you want to search for another movie or series? (yes/no)")
+        continue_search = input().strip().lower()
+        if continue_search != 'yes':
+            print("Exiting...")
+            break
