@@ -9,6 +9,9 @@ api_key = os.getenv("API_KEY")
 def search_movie(search_name):
     response = requests.get(f"http://www.omdbapi.com/?apikey={api_key}&s={search_name}")
     returned_data = response.json()
+    if returned_data is None or returned_data.get("Response") == "False":
+        print("No results found. Please try again.")
+        return None
     for i, movie in enumerate(returned_data.get("Search", []), start=1):
         print(f"{i}. Title: {movie['Title']}, Year: {movie['Year']}")
     while True:
