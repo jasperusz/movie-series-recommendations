@@ -16,15 +16,13 @@ def search_movie(search_name):
         print(f"{i}. Title: {movie['Title']}, Year: {movie['Year']}")
     while True:
         try:
-            choice = int(input("Select the movie or series by selecting the number (or 0 to exit): "))
+            choice = int(input("Select the movie or series by selecting the number (or 0 to exit/99 to search again): "))
             if choice == 0:
-                print("Do you want to search for another movie or series? (yes/no)")
-                if input().strip().lower() != 'yes':
-                    print("Exiting...")
-                    break
-                else:
-                    search_name = input("Enter a movie or series name to search: ")
-                    return search_movie(search_name)
+                print("Exiting...")
+                return None
+            elif choice == 99:
+                print("Searching again...")
+                return search_movie(input("Enter a movie or series name to search: "))
             elif 1 <= choice <= len(returned_data.get("Search", [])):
                 selected_movie = returned_data["Search"][choice - 1]
                 print(f"You selected: {selected_movie['Title']} ({selected_movie['Year']})")
